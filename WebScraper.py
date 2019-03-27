@@ -7,3 +7,19 @@ def save_html(html, path):
 def open_html(path):
     with open(path, 'rb') as f: #rb stands for "read bytes".
         return f.read()
+
+#Make request to server.
+import requests
+
+url = 'https://www.allsides.com/media-bias/media-bias-ratings'
+
+r = requests.get(url)
+#Confirm that we have source of the page.
+print(r.content[:100])
+
+#Parse HTML
+from bs4 import BeautifulSoup
+
+soup = BeautifulSoup(r.content, 'html.parser')
+
+rows = soup.select('tbody tr')
