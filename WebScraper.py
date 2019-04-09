@@ -23,3 +23,9 @@ from bs4 import BeautifulSoup
 soup = BeautifulSoup(r.content, 'html.parser')
 
 rows = soup.select('tbody tr')
+
+row = rows[0]
+
+name = row.select_one('.source-title').text.strip()
+
+print(name)
